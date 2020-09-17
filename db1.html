@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title></title>
+	</head>
+
+	<body>
+
+		<p>Job search or any such academic service shouldnt be hard to find. 
+		<br>We will help you find an appropriate Service Provider with a good rating to get you started with your career. </br>
+		Please select the state you reside in adn we will give you a list of all the Service Providers in your state.</p>
+
+		
+
+		<select id="country">
+			<option value="None">-- Select --</option>
+			<option value="ID001">ACT&NSW</option>
+			<option value="ID002" selected>NSW</option>
+			<option value="ID003">NT</option>
+			<option value="ID004">QLD</option>
+			<option value="ID005">SA</option>
+			<option value="ID006">TAS</option>
+			<option value="ID007">VIC</option>
+			<option value="ID008">WA</option>
+		</select>
+
+		<script>
+
+			function GetSelectedValue(){
+				var e = document.getElementById("country");
+				var result = e.options[e.selectedIndex].value;
+
+				document.getElementById("result").innerHTML = result;
+			}
+
+			function GetSelectedText(){
+				var e = document.getElementById("country");
+				var result = e.options[e.selectedIndex].text;
+
+				document.getElementById("result").innerHTML = result;
+			}
+
+		</script>
+
+		<br/>
+		<br/>
+		
+
+		<button type="button" onclick="GetSelectedText()">Search</button>
+		<p id="result">Please select an option and click on Search Button</p>
+		<?php 
+		
+global $wpdb;
+$hh = document.getElementById("result");
+
+$result = $wpdb->get_results ( "SELECT * FROM db_Service where State = $hh LIMIT 5" );
+foreach ( $result as $print ) {
+?>
+		
+	</body>
+
+</html>
